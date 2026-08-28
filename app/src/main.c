@@ -5,63 +5,52 @@ LOG_MODULE_REGISTER(demo, LOG_LEVEL_DBG);
 
 #define STACK_SIZE 1024
 
-#define PRIO_LOW 7
-#define PRIO_MED 5
-#define PRIO_HIGH 3
-#define PRIO_COOP -1
+#define PRIO_A 7
+#define PRIO_B 7
 
-void t_low_fn(void *p1, void *p2, void *p3)
+static volatile uint32_t counter;
+static K_MUTEX_DEFINE(counter_mutex);
+static struct k_sem done_sem;
+#define INCREMENTS      1000000   /* each thread increments this many times */
+
+void thread_a_fn(void *p1, void *p2, void *p3)
 {
-    while (1) {
-        LOG_INF("T_LOW running");
-        k_msleep(300);
+
+    for (int i = 0; i < INCREMENTS; i++) {
+        k_mutex_lock(&counter_mutex, K_FOREVER);
+        counter++;
+        k_mutex_unlock(&counter_mutex);
     }
+    k_sem_give(&done_sem);
 }
 
-void t_med_fn(void *p1, void *p2, void *p3)
+void thread_b_fn(void *p1, void *p2, void *p3)
 {
-    while (1) {
-        LOG_INF("T_MED running");
-        k_msleep(200);
+   
+
+    for (int i = 0; i < INCREMENTS; i++) {
+        k_mutex_lock(&counter_mutex, K_FOREVER);
+        counter++;
+        k_mutex_unlock(&counter_mutex);
     }
+    k_sem_give(&done_sem);
 }
 
-void t_high_fn(void *p1, void *p2, void *p3)
-{
-    while (1) {
-        LOG_INF("T_HIGH running");
-        k_msleep(100);
-    }
-}
 
-void t_coop_fn(void *p1, void *p2, void *p3)
-{
-    LOG_INF("[COOP] starting - will run 3 steps without yielding");
+K_THREAD_DEFINE(thread_a, STACK_SIZE, thread_a_fn,
+                NULL, NULL, NULL, PRIO_A, 0, 0);
+K_THREAD_DEFINE(thread_b, STACK_SIZE, thread_b_fn,
+                NULL, NULL, NULL, PRIO_B, 0, 0);
 
-    for (int i = 0; i < 5; i++) {
-        k_busy_wait(40000);   
-        LOG_INF("[COOP] step %d/5 - still holding CPU  tick=%u",
-                i + 1, k_uptime_get_32());
-    }
-
-    LOG_INF("[COOP] yielding now - HIGH and LOW can run");
-    k_yield();
-
-    LOG_INF("[COOP] done");
-}
-
-K_THREAD_DEFINE(t_low, STACK_SIZE, t_low_fn,
-                NULL, NULL, NULL, PRIO_LOW, 0, 0);
-K_THREAD_DEFINE(t_med, STACK_SIZE, t_med_fn,
-                NULL, NULL, NULL, PRIO_MED, 0, 0);
-K_THREAD_DEFINE(t_high, STACK_SIZE, t_high_fn,
-                NULL, NULL, NULL, PRIO_HIGH, 0, 0);
-K_THREAD_DEFINE(t_coop, STACK_SIZE, t_coop_fn,
-                NULL, NULL, NULL, PRIO_COOP, 0, 0);
 
 int main(void)
 {
-    LOG_INF("=== L1 Demo 1 ===");
+    LOG_INF("=== L2 Task1 1 ===");
+    k_sem_take(&done_sem, K_FOREVER);
+    k_sem_take(&done_sem, K_FOREVER);
+
+    LOG_INF("Actual  final value: %u", counter);
+    
     return 0;
 }
 
