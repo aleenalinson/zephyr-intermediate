@@ -1,0 +1,30 @@
+2026-10-13 19:12:16,220 - twister - INFO - Using Ninja..
+2026-10-13 19:12:16,955 - twister - INFO - Zephyr version: v0.4.5.4.1-58-gdef636fb47a8
+2026-10-13 19:12:17,064 - twister - DEBUG - Running cmake script C:\Users\aleena.t\zephyr_trial\zephyr\cmake\verify-toolchain.cmake
+2026-10-13 19:12:17,064 - twister - DEBUG - Calling cmake: ['C:\\Program Files\\CMake\\bin\\cmake.EXE', '-DFORMAT=json', '-P', 'C:\\Users\\aleena.t\\zephyr_trial\\zephyr\\cmake\\verify-toolchain.cmake']
+2026-10-13 19:12:18,800 - twister - DEBUG - Finished running C:\Users\aleena.t\zephyr_trial\zephyr\cmake\verify-toolchain.cmake
+2026-10-13 19:12:18,800 - twister - INFO - Using 'zephyr' toolchain.
+2026-10-13 19:12:28,954 - twister - DEBUG - Reading testsuite configuration files under C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\tests\temp_alarm...
+2026-10-13 19:12:28,954 - twister - DEBUG - Found possible testsuite in C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\tests\temp_alarm
+2026-10-13 19:12:28,969 - twister - DEBUG - No duplicates found.
+2026-10-13 19:12:28,969 - twister - DEBUG -  platform filter: ['native_sim']
+2026-10-13 19:12:28,969 - twister - DEBUG - platform_pattern: []
+2026-10-13 19:12:28,969 - twister - DEBUG -    vendor filter: []
+2026-10-13 19:12:28,969 - twister - DEBUG -      arch_filter: None
+2026-10-13 19:12:28,969 - twister - DEBUG -       tag_filter: None
+2026-10-13 19:12:28,969 - twister - DEBUG -      exclude_tag: None
+2026-10-13 19:12:28,969 - twister - DEBUG - Checking platform filter: ['native_sim']
+2026-10-13 19:12:28,969 - twister - INFO - Building initial testsuite list...
+2026-10-13 19:12:28,969 - twister - INFO - Writing JSON report C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\twister-out\testplan.json
+2026-10-13 19:12:29,222 - twister - INFO - Adding tasks to the queue...
+2026-10-13 19:12:29,222 - twister - INFO - Added initial list of jobs to queue
+2026-10-13 19:12:29,863 - twister - DEBUG - Launched 4 jobs
+2026-10-13 19:12:31,394 - twister - INFO - 2 test scenarios (2 configurations) selected, 2 configurations filtered (2 by static filter, 0 at runtime).
+2026-10-13 19:12:31,394 - twister - INFO - [32m0 of 0[39m executed test configurations passed (0.00%), 0 built (not run), 0 failed, 0 errored, with no warnings in 15.17 seconds.
+2026-10-13 19:12:31,394 - twister - INFO - 0 of 0 executed test cases passed (0.00%) on 0 out of total 1129 platforms (0.00%).
+2026-10-13 19:12:31,394 - twister - INFO - [32m0[39m test configurations executed on platforms, [36m0[39m test configurations were only built.
+2026-10-13 19:12:31,409 - twister - INFO - Saving reports...
+2026-10-13 19:12:31,409 - twister - INFO - Writing JSON report C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\twister-out\twister.json
+2026-10-13 19:12:31,409 - twister - INFO - Writing xunit report C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\twister-out\twister.xml...
+2026-10-13 19:12:31,425 - twister - INFO - Writing xunit report C:\Users\aleena.t\zephyr_trial\zephyr-intermediate\twister-out\twister_report.xml...
+2026-10-13 19:12:31,440 - twister - INFO - Run completed
